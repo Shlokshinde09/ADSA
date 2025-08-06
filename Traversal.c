@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -50,6 +51,16 @@ void postorder(struct Node* root){
     }
 }
 
+
+struct Node* search(struct Node* root, int data) {
+    if (root == NULL || root->data == data) {
+        return root;
+    }
+    if (data < root->data) {
+        return search(root->left, data);
+    }
+    return search(root->right, data);
+}
 int main(){
     int i, n;
     printf("Enter the number of elements to be inserted in BST: ");
@@ -73,6 +84,19 @@ int main(){
     printf("Postorder Traversal: ");
     postorder(root);
     printf("\n");
+
+    printf("Enter an element to search: ");
+    int searchElement;
+    scanf("%d", &searchElement);
+
+    if(search(root,searchElement)){
+        printf("Given node exist");
+
+    }
+    else{
+        printf("Given node does not exist");
+    }
+
 
     return 0;
 }
